@@ -1,5 +1,6 @@
 package com.project.ecommercewebsite.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,16 +25,16 @@ public class Customer {
     @Column(name = "receiver_first_name")
     private String receiver_first_name;
 
-    @Column(name = "receiver_last_name", nullable = false)
+    @Column(name = "receiver_last_name")
     private String receiver_last_name;
 
-    @Column(name = "receiver_phonenumber", nullable = false)
+    @Column(name = "receiver_phonenumber")
     private int receiver_phonenumber;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     private int account_id;
 

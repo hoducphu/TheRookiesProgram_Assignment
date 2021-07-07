@@ -1,5 +1,6 @@
 package com.project.ecommercewebsite.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,5 +33,5 @@ public class Category {
     private String category_name;
 
     @OneToMany(mappedBy = "Category")
-    private List<Product> listProducts;
+    private List<Product> products = new ArrayList<>();
 }

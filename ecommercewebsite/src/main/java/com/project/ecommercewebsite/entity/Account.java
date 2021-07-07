@@ -1,7 +1,6 @@
 package com.project.ecommercewebsite.entity;
 
-import java.util.Collection;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,23 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "Account")
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
-    private int account_id;
+    private Long account_id;
 
     @Column(name = "username")
     private String username;
@@ -41,16 +36,27 @@ public class Account {
     @Column(name = "user_last_name")
     private String user_last_name;
 
-    @Column(name = "user_phonenumber", nullable = false)
+    @Column(name = "user_phonenumber")
     private int user_phonenumber;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "account_role")
     private String account_role;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
-    private Collection<Customer> customers;
+    private int customer_id;
+
+    public Account(String username, String userpassword, String user_first_name, String user_last_name,
+            int user_phonenumber, String email, String account_role) {
+        this.username = username;
+        this.userpassword = userpassword;
+        this.user_first_name = user_first_name;
+        this.user_last_name = user_last_name;
+        this.user_phonenumber = user_phonenumber;
+        this.email = email;
+        this.account_role = account_role;
+    }
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,7 +48,7 @@ public class Order_detail {
     @Column(name = "deli_place")
     private String deli_place;
 
-    @OneToMany(mappedBy = "order_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order_detail", cascade = CascadeType.ALL)
     private List<Product> listProduct;
 
 }

@@ -1,8 +1,11 @@
 package com.project.ecommercewebsite.entity;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +36,7 @@ public class Product {
     @Column(name = "product_id")
     private int product_id;
 
-    @Column(name = "product_name", nullable = false)
+    @Column(name = "product_name")
     private String product_name;
 
     @Column(name = "rate")
@@ -51,14 +54,14 @@ public class Product {
     @Column(name = "meterial")
     private String meterial;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToMany(mappedBy = "order_master", fetch = FetchType.LAZY)
-    private Collection<Order_detail> order_details;
+    private List<Order_detail> order_detail = new ArrayList<>();
 
     @OneToMany(mappedBy = "Product")
-    private Set<Product_price> product_prices;
+    private Set<Product_price> product_prices = new HashSet<>();
 
 }
