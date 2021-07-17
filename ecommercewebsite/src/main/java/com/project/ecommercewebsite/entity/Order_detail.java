@@ -1,54 +1,55 @@
 package com.project.ecommercewebsite.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Table(name = "customer")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Order_detail {
+@Data
+@Table(name = "Order_detail", uniqueConstraints = { @UniqueConstraint(columnNames = { "product_id", "order_id" }) })
+
+public class Order_detail implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderdetail_id")
     private int orderdetail_id;
 
-    @Column(name = "ordinnal_number")
-    private int ordinnal_number;
-
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private int price;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "deli_date")
+    @Column(name = "deli_date", nullable = false)
     private Date deli_date;
 
-    @Column(name = "deli_place")
+    @Column(name = "deli_place", nullable = false)
     private String deli_place;
 
-    @OneToMany(mappedBy = "order_detail", cascade = CascadeType.ALL)
-    private List<Product> listProduct;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Order_master order;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

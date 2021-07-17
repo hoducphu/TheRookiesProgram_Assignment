@@ -1,22 +1,18 @@
 package com.project.ecommercewebsite.service;
 
-import java.util.Set;
+import java.util.List;
 
-import com.project.ecommercewebsite.entity.Account;
-// import com.project.ecommercewebsite.repository.AccountRepository;
+import com.project.ecommercewebsite.dto.AccountDto;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public interface IAccountService {
 
-    Set<Account> getAccount();
+    List<AccountDto> getAllAccount();
 
-    Account getAccountById(Long account_id);
+    AccountDto getAccountById(int account_id);
 
-    Account postAccount(Account account);
+    AccountDto postAccount(AccountDto accountDto);
 
-    // void updateAccount(int account_id, Account account);
+    AccountDto updateAccount(int account_id, AccountDto accountDto);
 
-    // void deleteAccount(int account_id);
+    String deleteAccount(int account_id);
 }
