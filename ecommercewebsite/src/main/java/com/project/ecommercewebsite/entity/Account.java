@@ -10,12 +10,13 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
 
 @Entity
-@Table(name = "account", uniqueConstraints = { @UniqueConstraint(columnNames = { "customer_id" }) })
+@Table(name = "account", uniqueConstraints = { @UniqueConstraint(columnNames = { "customer_id", "roleId" }) })
 @Data
 public class Account {
 
@@ -42,8 +43,9 @@ public class Account {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "account_role", nullable = false)
-    private String account_role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "roleId", nullable = false)
+    private Role role;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", unique = true)

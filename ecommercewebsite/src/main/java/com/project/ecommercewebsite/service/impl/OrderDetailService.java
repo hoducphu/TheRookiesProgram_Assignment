@@ -8,7 +8,6 @@ import com.project.ecommercewebsite.repository.OrderDetailRepository;
 import com.project.ecommercewebsite.service.IOrderDetailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 

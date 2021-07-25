@@ -1,6 +1,7 @@
 package com.project.ecommercewebsite.dto;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.project.ecommercewebsite.entity.Account;
@@ -13,6 +14,8 @@ public class AccountDto {
 
     private String username;
 
+    private String userpassword;
+
     private String user_first_name;
 
     private String user_last_name;
@@ -21,7 +24,7 @@ public class AccountDto {
 
     private String email;
 
-    private String account_role;
+    private Set<String> role;
 
     public static AccountDto toDto(Account account) {
         AccountDto accountDto = new AccountDto();
@@ -31,7 +34,6 @@ public class AccountDto {
         accountDto.setUser_last_name(account.getUser_last_name());
         accountDto.setUser_phonenumber(account.getUser_phonenumber());
         accountDto.setEmail(account.getEmail());
-        accountDto.setAccount_role(account.getAccount_role());
         return accountDto;
     }
 
@@ -43,11 +45,11 @@ public class AccountDto {
         Account account = new Account();
         account.setAccount_id(accountDto.getAccount_id());
         account.setUsername(accountDto.getUsername());
+        account.setUserpassword(accountDto.getUserpassword());
         account.setUser_first_name(accountDto.getUser_first_name());
         account.setUser_last_name(accountDto.getUser_last_name());
         account.setUser_phonenumber(accountDto.getUser_phonenumber());
         account.setEmail(accountDto.getEmail());
-        account.setAccount_role(accountDto.getAccount_role());
         return account;
     }
 

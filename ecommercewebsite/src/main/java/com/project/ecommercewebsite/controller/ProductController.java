@@ -49,7 +49,7 @@ public class ProductController {
     }
 
     // update product
-    @PutMapping(value = "/update/{product_id}")
+    @PutMapping(value = "/{product_id}")
     public ResponseEntity<ProductDto> updateProduct(@PathVariable("product_id") int product_id,
             @RequestBody ProductDto product) {
         ProductDto updatedProduct = productService.updateProduct(product_id, product);
@@ -57,7 +57,7 @@ public class ProductController {
     }
 
     // delete product
-    @DeleteMapping(value = "/delete/{product_id}")
+    @DeleteMapping(value = "/{product_id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable int product_id) {
         productService.deleteProduct(product_id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
